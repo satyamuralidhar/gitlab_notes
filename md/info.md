@@ -12,6 +12,21 @@
         $ docker login registry.gitlab.com -u username -p <pat token>
 
         $ docker push registry.gitlab.com/user/gitlab-container-registry-demo/alphinegl.test
-        
+
 **CleanUp Images:**
 * to save the memory we can use cleanup images enable which are present in setting of the project . we can also set the retention how many days will store images which tags needs to remove.remove tags older than 90days.
+
+## **Default Variables in GitLab:**
+
+    docker login -v $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+**CI Job Token:**
+
+    docker login -u $CI_JOB_USER -p $CI_JOB_TOKEN $CI_REGISTRY
+
+## **Installing Runner**
+
+* Download the runner on linux machine.
+
+[reference_link_download](https://docs.gitlab.com/runner/install/linux-manually.html)
+
