@@ -1,0 +1,54 @@
+#take docker container for building maven build
+#tags: running on specific runner by referencing tags which runner have tag name docker.
+
+variables: 
+  MAVEN_OPTS: -Dmaven.repo.local=.m2/repository
+
+image: maven:latest
+
+stages: 
+- build
+- test
+- package
+- deploy 
+
+#cache will improve the speed the build 
+cache: 
+  paths: 
+  - .m2/repository
+  - target
+
+build_job: 
+  stage: build
+  tags:
+  - docker
+  script:
+  - echo "Maven Compilation Started"
+  - "mvn compile"
+
+test_job: 
+  stage: test
+  tags:
+  - docker
+  script:
+  - echo "Maven Testing"
+  - "mvn Test" 
+
+package_job:
+  stage: package
+  tags: 
+  - docker
+  script: 
+  - echo "Maven Package"
+  - "mvn Package"
+
+deploy_job:
+  stage: deploy 
+  tags: 
+    - docker
+  script: 
+    - echo "Maven deploy"
+
+
+
+
