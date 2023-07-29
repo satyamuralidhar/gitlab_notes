@@ -1,0 +1,27 @@
+stages: 
+- dev
+- qe
+- snp
+
+Dev Job: 
+  stage: Dev
+  script: 
+  - echo "This is Dev job"
+  
+#parallel job is nothing but both job runs in same env
+#once qe1 job is done it will trigger qe2 
+
+Qe Job 1:
+  stage: qe
+  script:
+  - echo "This is Qe job 1"
+
+Qe Job 2:
+  stage: qe
+  script:
+  - echo "This is Qe job 2"
+
+snp Job:
+  stage: snp
+  script:
+  - echo "This is snp job"
